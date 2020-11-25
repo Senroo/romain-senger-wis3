@@ -39,6 +39,14 @@
 
     color: red;
   }
+
+
+  #autocomplete-result-list-1{
+
+
+    background:black;
+    color: white;
+  }
 </style>
 
 <body>
@@ -65,7 +73,7 @@
             <p class="card-text">{{movies.overview}}</p>
           </div>
           <div class="card-footer">
-            <a :href="'info-film.html?id=' + movies.id" class="text-muted">En savoir plus</a>
+            <a :href="'info-film.html?id=' + movies.id" class="text-white btn bg-primary">En savoir plus</a>
           </div>
         </div>
       </div>
@@ -82,7 +90,7 @@
             <p class="card-text">{{fav.overview}}</p>
           </div>
           <div class="card-footer">
-            <a :href="'info-film.html?id=' + fav.id" class="text-muted">En savoir plus</a>
+            <a :href="'info-film.html?id=' + fav.id" class="text-white btn bg-primary">En savoir plus</a>
           </div>
         </div>
       </div>

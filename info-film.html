@@ -17,17 +17,26 @@
   .container {
     margin-top: 2%;
   }
+
+  .info-film-btn{
+width: 40%;
+  }
+
+  
+  #autocomplete-result-list-1{
+
+
+background:black;
+color: white;
+}
+
+
 </style>
 
 <body>
   <div id="app">
     <nav class="navbar navbar-light bg-dark">
       <a class="navbar-brand text-primary" href="index.html">Mon projet VueJs</a>
-      <form class="form-inline" id="autocomplete">
-        <input id="autocomplete-input" class="form-control mr-sm-2" type="search" placeholder="Search"
-          aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
     </nav>
     <div class="container">
       <div class="row">
@@ -44,10 +53,12 @@
           <h2 class="mt-5">Temps du film</h2>
           <hr style="width: 20%;" class="bg-dark">
           <p>{{info.runtime}} min</p>
-          <h2 class="mt-5">Popularité du film</h2>
+          <h2 class="mt-5">Produit part</h2>
           <hr style="width: 20%;" class="bg-dark">
-          <p id="note">{{info.popularity}} %</p>
-          <a href="index.html" class="btn bg-primary text-white mt-5">Retour</a>
+          <ul class="mt-4" v-for="compagnie in info.production_companies">
+            <li>{{compagnie.name}}</li>
+          </ul>
+          <a href="index.html" class=" info-film-btn btn bg-primary text-white mt-5">Retour</a>
 
         </div>
       </div>
@@ -56,7 +67,7 @@
 </body>
 <footer class="footer bg-dark mt-5  py-3">
   <div class="container">
-    <span class="text-muted">Senro Production</span>
+    <span class="text-white">Senro Production</span>
   </div>
 </footer>
 
@@ -91,8 +102,6 @@
 
     }
   })
-
- 
 
 </script>
 
