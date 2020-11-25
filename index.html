@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projet Vuejs</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<style>
+  * {
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+
+  .container {
+    margin-top: 2%;
+  }
+
+  .h2_grid,
+  .h2_list {
+    margin-top: 2%;
+  }
+
+  .wiki-title{
+    background-color: white;
+  }
+
+</style>
+
+<body>
+
+
+    <ul class="autocomplete-result-list"></ul>
+  </div>
+  <div id="main">
+    <nav class="navbar navbar-light bg-dark">
+      <a class="navbar-brand text-primary ">Mon projet VueJs</a>
+      <a class="list-icon" :class="{ 'active': layout == 'list'}" @click="layout = 'list'">Mes coups de coeur</a>
+      <a class="grid-icon" :class="{ 'active': layout == 'grid'}" @click="layout = 'grid'">Les films les plus
+        populaire</a>
+        <div id="autocomplete" class="autocomplete">
+          <input class="autocomplete-input"
+            placeholder="Cherche ton film"
+            aria-label="cherche un film"
+          >
+          <ul class="autocomplete-result-list"></ul>
+        </div>
+    </nav>
+
+    <div v-if="layout == 'grid'" class="grid">
+      <h2 class="h2_grid">Les films les plus populaires</h2>
+      <hr style="width: 20%;" class="bg-dark">
+      <div class="card-deck mt-5" v-for="movies in info">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{movies.title}}</h5>
+            <p class="card-text">{{movies.overview}}</p>
+          </div>
+          <div class="card-footer">
+            <a :href="'info-film.html?id=' + movies.id" class="text-muted">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div v-if="layout == 'list'" class="list">
+      <h2 class="h2_list">Mes coups de coeur</h2>
+      <hr style="width: 20%;" class="bg-dark">
+      <div class="card-deck mt-5" v-for="fav in articles">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{fav.title}}</h5>
+            <p class="card-text">{{fav.overview}}</p>
+          </div>
+          <div class="card-footer">
+            <a :href="'info-film.html?id=' + fav.id" class="text-muted">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<footer class="footer bg-dark mt-5  py-3">
+  <div class="container">
+    <span class="text-muted">Place sticky footer content here.</span>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+  var demo = new Vue({
+    el: '#main',
+    data: {
+      return: {
+        info: null
+      },
+      // The layout mode, possible values are "grid" or "list".
+      layout: 'list',
+
+      articles: [{
+        "title": "Interstellar",
+        "overview": "Dans un futur proche, face à une Terre exsangue, un groupe d'explorateurs utilise un vaisseau interstellaire pour franchir un trou de ver permettant de parcourir des distances jusque-là infranchissables. Leur but :  trouver un nouveau foyer pour l'humanité.",
+        "image": "1pnigkWWy8W032o9TKDneBa3eVK.jpg",
+        "id": "157336"
+      },
+      {
+        "title": "The Great Hack : L'affaire Cambridge Analytic",
+        "overview": "Découvrez comment la société Cambridge Analytica en est venue à incarner la face obscure des réseaux sociaux dans le sillage de l'élection présidentielle aux USA en 2016.",
+        "image": "mGyMkoip5CpfcfNNQFIiuoIQkKb.jpg",
+        "id": "566222"
+
+      },
+      {
+        "title": "Comment tuer son boss ?",
+        "overview": "Pour Nick, Kurt et Dale, la seule chose qui pourrait rendre le travail quotidien plus tolérable serait de réduire en poussière leurs intolérables patrons. Démissionner étant exclu, les trois copains échafaudent, avec l’aide de quelques verres de trop et les conseils douteux d’un ancien détenu, un plan quelque peu alambiqué, mais infaillible, pour se débarrasser de leurs employeurs respectifs... définitivement. Il n’y a qu’un problème : les plans les plus infaillibles ne le sont qu’autant que les cerveaux qui les ont conçus le sont.",
+        "image": "2MlQGP9taKFHerOaLlvEEV42SF1.jpg",
+        "id": "51540"
+      },
+      {
+        "title": "My Hero Academia : Heroes Rising",
+        "overview": "La classe 1-A de U.A. a été envoyée sur l’île isolée de Nabu dans le cadre d’un programme de sécurité, ce qui équivaut à des actes mineurs de la part des étudiants, car l’île est pratiquement exempte de criminalité. Izuku Midoriya, titulaire du One for All, un pouvoir d’une immense puissance héritée, rencontre Mahoro Shimano et son frère Katsuma, résidents de l’île. S’unissant à eux avec son rival Katsuki Bakugo, ils découvrent que Katsuma souhaite devenir un héros, mais Mahoro cherche à le dissuader, estimant que son Alter n’est pas adapté à une ligne de travail dangereuse.Pendant ce temps, le père de Mahoro et Katsuma, qui possède un Alter curatif appelé Cell Activation, est attaqué par Nine et son groupe.",
+        "image": "gX8bssPezUidGFWJT1g7yM72oXq.jpg",
+        "id": "592350",
+      },
+      {
+        "title": "Dernier train pour busan",
+        "overview": "Un virus inconnu se répand en Corée du Sud, l'état d'urgence est décrété. Les passagers du train KTX se livrent à une lutte sans merci afin de survivre jusqu'à Busan, l'unique ville où ils seront en sécurité...",
+        "image": "wK1Pv21V8NkUM89ZlWlugrnCcnf.jpg",
+        "id": "396535"
+      },
+      {
+        "title": "Nos étoiles contraires",
+        "overview": "Hazel Grace et Gus sont deux adolescents hors-normes, partageant un humour ravageur et le mépris des conventions. Leur relation est elle-même inhabituelle, étant donné qu’ils se sont rencontrés et sont tombés amoureux via un groupe de soutien pour les malades du cancer.",
+        "image": "ePzNvyuL5xebAcbgfnXlViPSl2H.jpg",
+        "id":"222935"
+        
+      }]
+
+    },
+
+    computed: {
+      // A computed property that holds only those articles that match the searchString.
+      getValue: function () {
+
+        // Sélectionner l'élément input et récupérer sa valeur
+        var input = document.getElementById("in").value;
+
+      },
+    },
+
+    mounted() {
+      apikey = '?api_key=b3c539b16fd5edd577e05da83944f388&language=fr'
+      axios.get('https://api.themoviedb.org/3/movie/popular' + apikey).then(response => {
+        this.info = response.data.results
+        
+
+      })
+    }
+    
+  });
+
+  const Url = 'https://api.themoviedb.org/3/search/movie?api_key=b3c539b16fd5edd577e05da83944f388&language=fr'
+  const params = '&query='
+
+new Autocomplete('#autocomplete', {
+  
+  // Search function can return a promise
+  // which resolves with an array of
+  // results. In this case we're using
+  // the Wikipedia search API.
+  search: input => {
+    const url = `${Url}${
+      params
+    }${encodeURI(input)}`
+
+    return new Promise(resolve => {
+      if (input.length < 3) {
+        return resolve([])
+      }
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          resolve(data.results)
+        })
+    })
+  },
+  
+  // Control the rendering of result items.
+  // Let's show the title and snippet
+  // from the Wikipedia results
+  renderResult: (results) => `
+    <a><li ${results}>
+      <div class="wiki-title">
+       ${results.title}
+      </div>
+    </li></a>
+  `,
+  
+  // Wikipedia returns a format like this:
+  //
+  // {
+  //   pageid: 12345,
+  //   title: 'Article title',
+  //   ...
+  // }
+  // 
+  // We want to display the title
+  getResultValue: results => results.title,
+
+  // Open the selected article in
+  // a new window
+  onSubmit: results => {
+    window.open(`info-film.html?id=${
+      encodeURI(results.id)
+    }`)
+  }
+});
+
+
+</script>
+
+</html>

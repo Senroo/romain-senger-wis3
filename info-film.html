@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Information film</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<style>
+  * {
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+
+  .container {
+    margin-top: 2%;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <nav class="navbar navbar-light bg-dark">
+      <a class="navbar-brand text-primary" href="index.html">Mon projet VueJs</a>
+      <form class="form-inline" id="autocomplete">
+        <input id="autocomplete-input" class="form-control mr-sm-2" type="search" placeholder="Search"
+          aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <img :src="'https://image.tmdb.org/t/p/w500/' + info.poster_path">
+        </div>
+        <div class="col-sm">
+          <h2>Résumé</h2>
+          <hr style="width: 20%;" class="bg-dark">
+          <p>{{info.overview}}</p>
+          <h2 class="mt-5">Phrase clé du film</h2>
+          <hr style="width: 20%;" class="bg-dark">
+          <p>{{info.tagline}}</p>
+          <h2 class="mt-5">Temps du film</h2>
+          <hr style="width: 20%;" class="bg-dark">
+          <p>{{info.runtime}} min</p>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<footer class="footer bg-dark mt-5  py-3">
+  <div class="container">
+    <span class="text-muted">Place sticky footer content here.</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        info: null
+      }
+
+    },
+    mounted() {
+      page = document.location.href,
+        idPage = page.substring(page.lastIndexOf("?id=") + 4),
+
+        apikey = '?api_key=b3c539b16fd5edd577e05da83944f388&language=fr';
+
+
+      axios
+        .get("https://api.themoviedb.org/3/movie/" + idPage + apikey)
+        .then(response => (this.info = response.data))
+
+
+
+    }
+  })
+
+ 
+
+</script>
+
+</html>
