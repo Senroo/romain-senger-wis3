@@ -59,7 +59,7 @@
             <p class="card-text">{{movies.overview}}</p>
           </div>
           <div class="card-footer">
-            <a :href="'info-film.html?id=' + movies.id" class=" btn bg-primary text-muted">En savoir plus</a>
+            <a :href="'info-film.html?id=' + movies.id" class="text-muted">En savoir plus</a>
           </div>
         </div>
       </div>
@@ -86,7 +86,7 @@
 
 <footer class="footer bg-dark mt-5  py-3">
   <div class="container">
-    <span class="text-muted">Place sticky footer content here.</span>
+    <span class="text-white text-center">Senro Productions</span>
   </div>
 </footer>
 
@@ -146,13 +146,7 @@
     },
 
     computed: {
-      // A computed property that holds only those articles that match the searchString.
-      getValue: function () {
-
-        // Sélectionner l'élément input et récupérer sa valeur
-        var input = document.getElementById("in").value;
-
-      },
+      
     },
 
     mounted() {

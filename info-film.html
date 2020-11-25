@@ -21,6 +21,7 @@
 
 <body>
   <div id="app">
+    <pre>{{info}}</pre>
     <nav class="navbar navbar-light bg-dark">
       <a class="navbar-brand text-primary" href="index.html">Mon projet VueJs</a>
       <form class="form-inline" id="autocomplete">
@@ -44,7 +45,7 @@
           <h2 class="mt-5">Temps du film</h2>
           <hr style="width: 20%;" class="bg-dark">
           <p>{{info.runtime}} min</p>
-
+<a href="index.html" class="btn bg-primary text-white">Retour</a>
 
         </div>
       </div>
@@ -72,6 +73,7 @@
     },
     mounted() {
       page = document.location.href,
+      
         idPage = page.substring(page.lastIndexOf("?id=") + 4),
 
         apikey = '?api_key=b3c539b16fd5edd577e05da83944f388&language=fr';
