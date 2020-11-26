@@ -18,19 +18,17 @@
     margin-top: 2%;
   }
 
-  .info-film-btn{
-width: 40%;
+  .info-film-btn {
+    width: 40%;
   }
 
-  
-  #autocomplete-result-list-1{
+
+  #autocomplete-result-list-1 {
 
 
-background:black;
-color: white;
-}
-
-
+    background: black;
+    color: white;
+  }
 </style>
 
 <body>
@@ -88,7 +86,7 @@ color: white;
     mounted() {
 
       page = document.location.href,
-      
+
         idPage = page.substring(page.lastIndexOf("?id=") + 4),
 
         apikey = '?api_key=b3c539b16fd5edd577e05da83944f388&language=fr';

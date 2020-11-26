@@ -41,15 +41,15 @@
   }
 
 
-  #autocomplete-result-list-1{
+  #autocomplete-result-list-1 {
 
 
-    background:black;
+    background: black;
     color: white;
   }
 
-  .card-footer{
-    background: #343a40 ;
+  .card-footer {
+    background: #343a40;
     margin: 0;
   }
 </style>
@@ -108,7 +108,7 @@
   <div class="container">
     <span class="text-white text-center">Senro Productions</span>
 
-    
+
   </div>
 </footer>
 
@@ -167,10 +167,6 @@
 
     },
 
-    computed: {
-
-    },
-
     mounted() {
       apikey = '?api_key=b3c539b16fd5edd577e05da83944f388&language=fr'
       axios.get('https://api.themoviedb.org/3/movie/popular' + apikey).then(response => {
@@ -203,7 +199,7 @@
           })
       })
     },
-
+    /*Naviguer dans la liste avec les flèches --> par exemple pour choisir le 3e film appuyer 3 fois sur la flèche du bas, je n'ai pas réussi à créer des liens pour directement cliquer dessus  😁*/
     renderResult: (results) => `
     <a><li ${results}>
       <div class="film-title">
